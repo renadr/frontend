@@ -1,8 +1,14 @@
+require("dotenv").config({
+  path: `.env`,
+});
+
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Adrien Lemaire`,
+    description: `Portfolio de Adrien Lemaire, développeur web front-end React.JS à Paris. Découvrez mes compétences et projets.`,
+    author: `@renadr`,
+    siteUrl: 'localhost:8000'
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -30,5 +36,16 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-robots-txt`,
+    {
+      resolve: "gatsby-source-strapi",
+      options: {
+        apiURL: process.env.API_URL || "http://localhost:1337",
+        contentTypes: ["article", "category", "writer"],
+        singleTypes: [`homepage`, `global`],
+        queryLimit: 1000,
+      },
+    },
   ],
 }

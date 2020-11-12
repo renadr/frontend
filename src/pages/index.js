@@ -1,22 +1,50 @@
-import React from "react"
-import { Link } from "gatsby"
+import React, { useState, useEffect } from "react";
+import theme from "styled-theming";
+import styled, { ThemeProvider } from "styled-components";
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import Layout from "../components/layout";
+import SEO from "../components/seo";
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+export const backgroundColor = theme("mode", {
+  light: "#fff",
+  dark: "#0d0d13",
+});
 
-export default IndexPage
+export const textColor = theme("mode", {
+  light: "#000",
+  dark: "#fff",
+});
+
+const ThemeButton = styled.button`
+  height: 20px;
+  width: 20px;
+  position: fixed;
+  right: 5px;
+  top: 5px;
+  background: ${textColor};
+  border: none;
+  cursor: pointer;
+  &:focus {
+    border: none;
+    outline: none;
+  }
+`;
+
+const IndexPage = () => {
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    if(window.matchMedia('(prefers-color-scheme: dark)').matches) setTheme('dark');
+    else setTheme('light');
+  }, []);
+
+  return (
+  <ThemeProvider theme={{ mode: theme }}>
+    <ThemeButton onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme.`}/>
+    <Layout>
+      <SEO title="Home" />
+    </Layout>
+  </ThemeProvider>
+)};
+
+export default IndexPage;
