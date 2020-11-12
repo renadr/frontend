@@ -38,14 +38,5 @@ module.exports = {
     // `gatsby-plugin-offline`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-robots-txt`,
-    {
-      resolve: "gatsby-source-strapi",
-      options: {
-        apiURL: process.env.API_URL || "http://localhost:1337",
-        contentTypes: ["article", "category", "writer"],
-        singleTypes: [`homepage`, `global`],
-        queryLimit: 1000,
-      },
-    },
   ],
 }
