@@ -1,6 +1,5 @@
 import React from "react";
-import styled, { css } from "styled-components";
-import { textColor, backgroundColor } from "../pages/index";
+import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
@@ -11,7 +10,7 @@ const Container = styled.div`
 
 const Title = styled.h3`
   font-size: 16px;
-  color: ${textColor};
+  color: ${props => props.theme.color};
   margin-bottom: 4px;
   font-weight: 600;
 `;
@@ -26,8 +25,8 @@ const Square = styled.div`
   display: flex;
   height: 10px;
   width: 10px;
-  border: 1px solid ${textColor};
-  background-color: ${props => (props.filled ? textColor : "none")};
+  border: 1px solid ${props => props.theme.color};
+  background-color: ${props => (props.filled ? props.theme.color : "none")};
   margin: 2px;
 `;
 

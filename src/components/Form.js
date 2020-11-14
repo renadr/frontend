@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import styled, { css } from "styled-components";
-import { textColor, backgroundColor } from "../pages/index";
+import styled from "styled-components";
 import Input from "./Input";
 
 const Container = styled.form`
@@ -16,11 +15,11 @@ const Row = styled.div`
 
 const ButtonForm = styled.button`
   background: none;
-  border: 1px solid ${textColor};
+  border: 1px solid ${props => props.theme.color};
   padding: 8px;
   overflow: hidden;
   width: 100%;
-  color: ${textColor};
+  color: ${props => props.theme.color};
   text-transform: uppercase;
   cursor: pointer;
   margin: 2px;

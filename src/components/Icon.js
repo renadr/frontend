@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import Lottie from "react-lottie";
-import { textColor, backgroundColor } from "../pages/index";
 import styled from "styled-components";
 
 const Container = styled.a`
   cursor: pointer;
   margin: 8px;
   & * {
-    fill: ${textColor};
+    fill: ${props => props.theme.color};
   }
 `;
 

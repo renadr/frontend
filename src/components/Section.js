@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import React, { useRef } from "react";
 import styled from "styled-components";
 import { useKeyPressEvent } from "react-use";
-import { textColor, backgroundColor } from "../pages/index";
 
 const Container = styled.section`
   display: flex;
@@ -11,7 +10,7 @@ const Container = styled.section`
   height: ${props => (props.isOpen ? `calc(100vh - 84px - 24px * 4)` : `24px`)};
   overflow: hidden;
   transition: all ease 0.4s;
-  color: ${textColor};
+  color: ${props => props.theme.color};
 `;
 
 const Title = styled.h2`

@@ -1,12 +1,11 @@
 import PropTypes from "prop-types";
 import React, { useRef } from "react";
 import styled, { css } from "styled-components";
-import { textColor, backgroundColor } from "../../pages/index";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid ${textColor};
+  border: 1px solid ${props => props.theme.color};
   padding: 2px;
   /* min-width: 196px; */
   margin: 2px;
@@ -44,7 +43,7 @@ const Field = styled.input`
   font-size: 16px;
   font-weight: 800;
   background: none;
-  color: ${textColor};
+  color: ${props => props.theme.color};
   &:focus {
     outline: none;
   }
@@ -66,7 +65,7 @@ const TextArea = styled.textarea`
   font-size: 16px;
   font-weight: 800;
   background: none;
-  color: ${textColor};
+  color: ${props => props.theme.color};
   resize: none;
   line-height: 20px;
   transition: height ease 0.4s;

@@ -13,7 +13,6 @@ import styled from "styled-components";
 import Header from "./header";
 import "./layout.css";
 import Section from "./Section";
-import { textColor, backgroundColor } from "../pages/index";
 import Form from "./Form";
 import Skill from "./Skill";
 import Icon from "./Icon";
@@ -31,7 +30,7 @@ const Container = styled.div`
 
 const Page = styled.div`
   min-height: 100vh;
-  background-color: ${backgroundColor};
+  background-color: ${props => props.theme.backgroundColor};
   transition: all ease 0.4s;
   display: flex;
   flex-direction: column;

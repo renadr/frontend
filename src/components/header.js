@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useKeyPressEvent } from "react-use";
-import { textColor, backgroundColor } from "../pages/index";
 
 const Container = styled.div`
   display: flex;
@@ -21,7 +20,7 @@ const Title = styled.span`
   text-transform: uppercase;
   padding: 0 2px;
   transition: transform ease 0.4s;
-  color: ${textColor};
+  color: ${props => props.theme.color};
 `;
 
 const TitleContainer = styled.h1`
