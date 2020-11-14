@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useKeyPressEvent } from "react-use";
 import { textColor, backgroundColor } from "../pages/index";
@@ -30,12 +30,14 @@ const TitleContainer = styled.h1`
   justify-content: center;
   align-items: flex-start;
   transition: all ease 0.4s;
-  transform: translateY(${(props) => (props.minimized && props.pos) ? '0' : `${props.pos}px`});
+  transform: translateY(
+    ${props => (props.minimized && props.pos ? "0" : `${props.pos}px`)}
+  );
   margin: 0;
   padding: 20px 0;
 
   ${Title} {
-    cursor: ${(props) => props.minimized ? 'pointer' : 'default'};
+    cursor: ${props => (props.minimized ? "pointer" : "default")};
   }
 
   &:focus,
@@ -55,12 +57,17 @@ const Header = ({ title, minimized, onClick }) => {
   const [firstName, lastName] = title.split(" ");
   const ContainerRef = useRef();
   const titleRef = useRef();
+  const [documentLoaded, setDocumentLoaded] = useState(false);
 
   useKeyPressEvent("Enter", () => {
     if (titleRef && titleRef.current === document.activeElement) {
       onClick();
     }
   });
+
+  useEffect(() => {
+    setDocumentLoaded(true);
+  }, []);
 
   return (
     <Container minimized={minimized} ref={ContainerRef}>
@@ -69,7 +76,12 @@ const Header = ({ title, minimized, onClick }) => {
         onClick={onClick}
         tabIndex="0"
         ref={titleRef}
-        pos={(document?.documentElement?.clientHeight / 2) - (titleRef?.current?.getBoundingClientRect()?.height + 100)}
+        pos={
+          documentLoaded
+            ? document?.documentElement?.clientHeight / 2 -
+              (titleRef?.current?.getBoundingClientRect()?.height + 100)
+            : 0
+        }
       >
         <Title>{firstName}</Title>
         <Title
